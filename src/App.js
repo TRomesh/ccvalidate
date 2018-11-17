@@ -1,25 +1,24 @@
-import React, { Component } from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, { Component } from "react";
+import { Button, Checkbox, Form } from "semantic-ui-react";
 
 class App extends Component {
   render() {
     return (
-      <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <p>
-            Edit <code>src/App.js</code> and save to reload.
-          </p>
-          <a
-            className="App-link"
-            href="https://reactjs.org"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Learn React
-          </a>
-        </header>
+      <div>
+        <Form>
+          <Form.Field>
+            <label>First Name</label>
+            <input placeholder="First Name" />
+          </Form.Field>
+          <Form.Field>
+            <label>Last Name</label>
+            <input placeholder="Last Name" />
+          </Form.Field>
+          <Form.Field>
+            <Checkbox label="I agree to the Terms and Conditions" />
+          </Form.Field>
+          <Button type="submit">Submit</Button>
+        </Form>
       </div>
     );
   }
