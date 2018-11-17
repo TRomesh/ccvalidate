@@ -1,5 +1,13 @@
 import React, { Component } from "react";
-import { Button, Checkbox, Form } from "semantic-ui-react";
+import {
+  Button,
+  Form,
+  Grid,
+  Header,
+  Image,
+  Message,
+  Segment
+} from "semantic-ui-react";
 function validateCardNumber(number) {
   let regex = new RegExp("^[0-9]{16}$");
   if (detectCardType1(number) == "AMEX") {
@@ -70,20 +78,73 @@ class App extends Component {
   render() {
     return (
       <div>
-        <Form>
-          <Form.Field>
-            <label>First Name</label>
-            <input placeholder="First Name" />
-          </Form.Field>
-          <Form.Field>
-            <label>Last Name</label>
-            <input placeholder="Last Name" />
-          </Form.Field>
-          <Form.Field>
-            <Checkbox label="I agree to the Terms and Conditions" />
-          </Form.Field>
-          <Button type="submit">Submit</Button>
-        </Form>
+        <Grid
+          textAlign="center"
+          style={{ height: "100%" }}
+          verticalAlign="middle"
+        >
+          <Grid.Column computer={6} mobile={2} tablet={5} />
+          <Grid.Column computer={4} mobile={12} tablet={6}>
+            <Form size="large">
+              <Segment stacked>
+                <Form.Input
+                  fluid
+                  icon="dollar"
+                  iconPosition="left"
+                  placeholder="Payment amount"
+                />
+                <Form.Input
+                  fluid
+                  icon="user"
+                  iconPosition="left"
+                  placeholder="Name on Card"
+                />
+                <Form.Input
+                  fluid
+                  icon="credit card"
+                  iconPosition="left"
+                  placeholder="Card Number"
+                />
+                <Grid>
+                  <Grid.Row>
+                    <Grid.Column computer={8} mobile={8} tablet={8}>
+                      <Form.Input
+                        fluid
+                        icon="calendar alternate"
+                        iconPosition="left"
+                        placeholder="Expiry date"
+                      />
+                    </Grid.Column>
+                    <Grid.Column computer={8} mobile={8} tablet={8}>
+                      <Form.Input
+                        fluid
+                        icon="key"
+                        iconPosition="left"
+                        placeholder="CVV"
+                      />
+                    </Grid.Column>
+                  </Grid.Row>
+                </Grid>
+                <Grid>
+                  <Grid.Row>
+                    <Grid.Column computer={4} mobile={4} tablet={4} />
+                    <Grid.Column computer={6} mobile={6} tablet={6}>
+                      <Button color="red" size="medium">
+                        Cancel
+                      </Button>
+                    </Grid.Column>
+                    <Grid.Column computer={6} mobile={6} tablet={6}>
+                      <Button color="green" size="medium">
+                        Signup
+                      </Button>
+                    </Grid.Column>
+                  </Grid.Row>
+                </Grid>
+              </Segment>
+            </Form>
+          </Grid.Column>
+          <Grid.Column computer={6} mobile={2} tablet={5} />
+        </Grid>
       </div>
     );
   }
