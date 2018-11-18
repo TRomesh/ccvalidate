@@ -137,7 +137,7 @@ class CardForm extends Component {
   };
 
   Submit = () => {
-    console.log("Submit");
+    this.props.history.push("/loading");
   };
 
   render() {
