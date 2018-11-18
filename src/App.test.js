@@ -19,7 +19,7 @@ it("Check luhn algorithm", () => {
 });
 
 it("Check creditcard type", () => {
-  let number = "4916719850148545";
+  let number = "5141602002249029";
   let card = "";
   const cc = {
     electron: /^(4026|417500|4405|4508|4844|4913|4917)\d+$/,
@@ -30,26 +30,26 @@ it("Check creditcard type", () => {
     amex: /^3[47][0-9]{13}$/
   };
   if (cc.electron.test(number)) {
-    card === "electron";
+    card = "electron";
   } else if (cc.maestro.test(number)) {
-    card === "maestro";
+    card = "maestro";
   } else if (cc.unionpay.test(number)) {
-    card === "unionpay";
+    card = "unionpay";
   } else if (cc.visa.test(number)) {
-    card === "visa";
+    card = "visa";
   } else if (cc.mastercard.test(number)) {
-    card === "mastercard";
+    card = "mastercard";
   } else if (cc.amex.test(number)) {
-    card === "amex";
+    card = "amex";
   } else {
-    card === "";
+    card = "";
   }
 
-  expect(card).toBe("visa");
+  expect(card).toMatch("mastercard");
 });
 
-// it("renders without crashing", () => {
-//   const div = document.createElement("div");
-//   ReactDOM.render(<App />, div);
-//   ReactDOM.unmountComponentAtNode(div);
-// });
+it("renders without crashing", () => {
+  const div = document.createElement("div");
+  ReactDOM.render(<App />, div);
+  ReactDOM.unmountComponentAtNode(div);
+});
