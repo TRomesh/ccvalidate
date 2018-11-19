@@ -1,0 +1,1 @@
+export const VALIDATE_CARD = "VALIDATE_CARD";

@@ -8,6 +8,8 @@ import {
   Message,
   Segment
 } from "semantic-ui-react";
+import { connect } from "react-redux";
+import { Validate } from "./actions/validateaction";
 
 import "./App.css";
 
@@ -24,7 +26,11 @@ class CardForm extends Component {
     cvv_err: false
   };
 
-  componentDidMount() {}
+  componentDidUpdate(prevProps) {
+    if (this.props.valid === true) {
+      this.props.history.push("/loading");
+    }
+  }
 
   handleChange = (e, { name, value }) => this.setState({ [name]: value });
 
@@ -137,12 +143,18 @@ class CardForm extends Component {
   };
 
   Submit = () => {
-    this.props.history.push("/loading");
+    this.props.submit({
+      name: this.state.name,
+      number: this.state.number,
+      date: this.state.date,
+      cvv: this.state.cvv
+    });
   };
 
   render() {
     let { card, name_err, number_err, date_err, cvv_err } = this.state;
     const isEnabled = name_err || number_err || date_err || cvv_err;
+
     return (
       <div className="login-form">
         <style>
@@ -159,8 +171,8 @@ class CardForm extends Component {
           style={{ height: "100%" }}
           verticalAlign="middle"
         >
-          <Grid.Column computer={6} mobile={2} tablet={5} />
-          <Grid.Column computer={4} mobile={12} tablet={6}>
+          <Grid.Column computer={6} mobile={1} tablet={5} />
+          <Grid.Column computer={4} mobile={14} tablet={6}>
             <Form size="large">
               <Segment stacked>
                 <Form.Input
@@ -242,11 +254,28 @@ class CardForm extends Component {
               </Segment>
             </Form>
           </Grid.Column>
-          <Grid.Column computer={6} mobile={2} tablet={5} />
+          <Grid.Column computer={6} mobile={1} tablet={5} />
         </Grid>
       </div>
     );
   }
 }
 
-export default CardForm;
+let mapStateToProps = (state, props) => {
+  return {
+    valid: state.validate.isValidate
+  };
+};
+
+let mapDispatchToProps = dispatch => {
+  return {
+    submit: data => {
+      dispatch(Validate(data));
+    }
+  };
+};
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(CardForm);
