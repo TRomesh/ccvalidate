@@ -144,7 +144,16 @@ class CardForm extends Component {
     let { card, name_err, number_err, date_err, cvv_err } = this.state;
     const isEnabled = name_err || number_err || date_err || cvv_err;
     return (
-      <div>
+      <div className="login-form">
+        <style>
+          {`
+            body > div,
+            body > div > div,
+            body > div > div > div.login-form {
+              height: 100%;
+            }
+        `}
+        </style>
         <Grid
           textAlign="center"
           style={{ height: "100%" }}
